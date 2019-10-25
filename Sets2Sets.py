@@ -574,7 +574,13 @@ def trainIters(data_chunk, output_size, encoder, decoder, model_id, training_key
 
         print_loss_avg = print_loss_total / len(training_key_set)
         print_loss_total = 0
-        print('%s (%d %d%%) %.6f' % (timeSince(start, total_iter / (n_iters * len(training_key_set))), total_iter, total_iter / (n_iters * len(training_key_set)) * 100,print_loss_avg))
+        print('{} [Epoch {}] - ({:,} iterations - {:.2f}% of total): Loss:{:.6f}'.format(
+            timeSince(start, total_iter / (n_iters * len(training_key_set))),
+            j,
+            total_iter,
+            total_iter / (n_iters * len(training_key_set)) * 100,
+            print_loss_avg
+        ))
 
         filepath = './models/encoder' + (model_id) + '_model_epoch' + str(int(j))
         encoder_pathes.append(filepath)

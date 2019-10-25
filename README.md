@@ -23,7 +23,7 @@ The above command will train our model based on 4 folds of the Ta-Feng data set.
 
 Test:
 ```
-python Sets2Sets.py ./data/TaFang_history.csv ./data/TaFang_future.csv TaFang 2 0 
+python3 Sets2Sets.py ./data/TaFang_history.csv ./data/TaFang_future.csv TaFang 2 0 
 ```
 The above command will test the learned model on the left 1 fold data. We just need to change the mode flag from 1 to 0. The test  performance of the model giving best performance on the validation set will be printed out.
 
@@ -33,7 +33,7 @@ The above command will test the learned model on the left 1 fold data. We just n
 
 If you want to try our method on Dunnhumby data set, please visit [the offical website.](https://www.dunnhumby.com/careers/engineering/sourcefiles) View the 'Let's Get Sort-of-Real'. Download the the data for randomly selected sample of 50,000 customers. We provide our script to transfer their data into the formate our method needs. After extracting all the files in the zip file and put them under a folder (e.g. ./dunnhumby_50k/), please remember to delete a file named time.csv which is not needed in our method. Then, put our script and the folder './dunnhumby_50k/' at the same level. Run our script by following command:
 ```
-python Dunnhumby_data_preprocessing.py ./dunnhumby_50k/ past.csv future.csv
+python3 Dunnhumby_data_preprocessing.py ./dunnhumby_50k/ past.csv future.csv
 ```
 The data will be generated under the current folder. You can just replace the two files (TaFang_history.csv and TaFang_future.csv) with these two generated files to apply our method on Dunnhumby data set as before.
 

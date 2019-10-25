@@ -999,10 +999,14 @@ def main(argv):
             ndcg_list = []
             hr_list = []
             print('k = ' + str(i))
-            for model_epoch in range(num_iter):
+            for model_epoch in tqdm(range(num_iter)):
                 print('Epoch: ', model_epoch)
                 encoder_pathes = './models/encoder' + str(model_version) + '_model_epoch' + str(model_epoch)
                 decoder_pathes = './models/decoder' + str(model_version) + '_model_epoch' + str(model_epoch)
+                if not os.path.exists(encoder_pathes):
+                    continue
+                if not os.path.exists(decoder_pathes):
+                    continue
 
                 encoder_instance = torch.load(encoder_pathes)
                 decoder_instance = torch.load(decoder_pathes)
@@ -1011,10 +1015,14 @@ def main(argv):
                 valid_recall.append(recall)
                 valid_ndcg.append(ndcg)
                 valid_hr.append(hr)
+                print('Validation set done')
+                
                 recall, ndcg, hr = evaluate(data_chunk, encoder_instance, decoder_instance, input_size, test_key_set, next_k_step, i)
                 recall_list.append(recall)
                 ndcg_list.append(ndcg)
                 hr_list.append(hr)
+                print('Test set done')
+
             valid_recall = np.asarray(valid_recall)
             valid_ndcg = np.asarray(valid_ndcg)
             valid_hr = np.asarray(valid_hr)

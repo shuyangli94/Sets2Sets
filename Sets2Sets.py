@@ -3,6 +3,7 @@ import random
 import sys
 import csv
 import os
+from tqdm import tqdm
 
 import torch
 import torch.nn as nn
@@ -556,7 +557,7 @@ def trainIters(data_chunk, output_size, encoder, decoder, model_id, training_key
         # criterion = nn.BCELoss()
         weight_vector = []
 
-        for iter in range(1, len(training_key_set) + 1):
+        for iter in tqdm(range(1, len(training_key_set) + 1)):
             # training_pair = training_pairs[iter - 1]
             # input_variable = training_pair[0]
             # target_variable = training_pair[1]
